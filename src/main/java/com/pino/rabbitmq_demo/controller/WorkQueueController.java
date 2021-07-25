@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/workQueue")
-@Api(tags = "workQueue")
+@Api(tags = "Work Queue")
 public class WorkQueueController {
     private final RabbitTemplate rabbitTemplate;
 
@@ -24,6 +24,6 @@ public class WorkQueueController {
     @PostMapping("/{msg}")
     public ResponseEntity<String> sendMessage(@PathVariable String msg) {
         rabbitTemplate.convertAndSend(QueueConst.WORK_QUEUE, msg);
-        return ResponseEntity.accepted().body("message 傳送成功");
+        return ResponseEntity.accepted().body("訊息傳送成功");
     }
 }

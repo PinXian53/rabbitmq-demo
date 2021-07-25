@@ -1,4 +1,4 @@
-package com.pino.rabbitmq_demo.message_listener;
+package com.pino.rabbitmq_demo.queue_receiver;
 
 import com.pino.rabbitmq_demo.Util.ThreadUtils;
 import com.pino.rabbitmq_demo.constant.QueueConst;
