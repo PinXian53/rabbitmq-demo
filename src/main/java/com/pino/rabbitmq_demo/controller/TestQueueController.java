@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/testQueue")
 @Api(tags = "測試用")
-public class SendMessageController {
+public class TestQueueController {
 
     private final RabbitTemplate rabbitTemplate;
 
-    public SendMessageController(RabbitTemplate rabbitTemplate) {
+    public TestQueueController(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
 
