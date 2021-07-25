@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.time.OffsetDateTime;
 
 @Component
-public class ReceiveMessageListener {
+public class TestQueueListener {
 
     @RabbitListener(queues = {QueueConst.TEST_QUEUE})
     public void receive(String msg) {
