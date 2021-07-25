@@ -2,11 +2,9 @@ package com.pino.rabbitmq_demo.config;
 
 import com.pino.rabbitmq_demo.constant.ExchangeConst;
 import com.pino.rabbitmq_demo.constant.QueueConst;
+import com.pino.rabbitmq_demo.constant.RoutingKey;
 import com.pino.rabbitmq_demo.queue_receiver.WorkQueueReceiver;
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.FanoutExchange;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -71,6 +69,45 @@ public class RabbitmqConfig {
     @Bean
     public Binding binding2(FanoutExchange fanout, Queue fanoutQueue2) {
         return BindingBuilder.bind(fanoutQueue2).to(fanout);
+    }
+
+
+    //********************
+    // Routing
+    //********************
+    @Bean
+    public DirectExchange routing() {
+        return new DirectExchange(ExchangeConst.ROUTING_EXCHANGE);
+    }
+
+    @Bean
+    public Queue routingQueue1() {
+        return new Queue(QueueConst.ROUTING_QUEUE1, true, false, true);
+    }
+
+    @Bean
+    public Queue routingQueue2() {
+        return new Queue(QueueConst.ROUTING_QUEUE2, true, false, true);
+    }
+
+    @Bean
+    public Binding binding1a(DirectExchange routing, Queue routingQueue1) {
+        return BindingBuilder.bind(routingQueue1).to(routing).with(RoutingKey.black);
+    }
+
+    @Bean
+    public Binding binding1b(DirectExchange routing, Queue routingQueue1) {
+        return BindingBuilder.bind(routingQueue1).to(routing).with(RoutingKey.orange);
+    }
+
+    @Bean
+    public Binding binding2a(DirectExchange routing, Queue routingQueue2) {
+        return BindingBuilder.bind(routingQueue2).to(routing).with(RoutingKey.black);
+    }
+
+    @Bean
+    public Binding binding2b(DirectExchange routing, Queue routingQueue2) {
+        return BindingBuilder.bind(routingQueue2).to(routing).with(RoutingKey.green);
     }
 
 }
