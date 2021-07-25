@@ -7,4 +7,6 @@ public final class QueueConst {
     public final static String FANOUT_QUEUE2 = "fanout.queue2";
     public final static String ROUTING_QUEUE1 = "routing.queue1";
     public final static String ROUTING_QUEUE2 = "routing.queue2";
+    public final static String TOPIC_QUEUE1 = "topic.queue1";
+    public final static String TOPIC_QUEUE2 = "topic.queue2";
 }

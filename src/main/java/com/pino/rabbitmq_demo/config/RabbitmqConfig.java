@@ -110,4 +110,37 @@ public class RabbitmqConfig {
         return BindingBuilder.bind(routingQueue2).to(routing).with(RoutingKey.green);
     }
 
+    //********************
+    // Routing
+    //********************
+    @Bean
+    public TopicExchange topic() {
+        return new TopicExchange(ExchangeConst.TOPIC_EXCHANGE);
+    }
+
+    @Bean
+    public Queue topicQueue1() {
+        return new Queue(QueueConst.TOPIC_QUEUE1, true, false, true);
+    }
+
+    @Bean
+    public Queue topicQueue2() {
+        return new Queue(QueueConst.TOPIC_QUEUE2, true, false, true);
+    }
+
+    @Bean
+    public Binding bindingTopic1a(TopicExchange topic, Queue topicQueue1) {
+        return BindingBuilder.bind(topicQueue1).to(topic).with("*.orange.*");
+    }
+
+    @Bean
+    public Binding bindingTopic2a(TopicExchange topic, Queue topicQueue2) {
+        return BindingBuilder.bind(topicQueue2).to(topic).with("*.*.rabbit");
+    }
+
+    @Bean
+    public Binding bindingTopic2b(TopicExchange topic, Queue topicQueue2) {
+        return BindingBuilder.bind(topicQueue2).to(topic).with("lazy.#");
+    }
+
 }
