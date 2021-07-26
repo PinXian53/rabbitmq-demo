@@ -161,9 +161,7 @@ public class RabbitmqConfig {
 
     @Bean
     public Binding binding(DirectExchange rpc, Queue rpcQueue) {
-        return BindingBuilder.bind(rpcQueue)
-                .to(rpc)
-                .with("rpc");
+        return BindingBuilder.bind(rpcQueue).to(rpc).with("rpc");
     }
 
     @Bean
