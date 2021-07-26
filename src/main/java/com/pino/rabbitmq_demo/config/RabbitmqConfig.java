@@ -3,6 +3,7 @@ package com.pino.rabbitmq_demo.config;
 import com.pino.rabbitmq_demo.constant.ExchangeConst;
 import com.pino.rabbitmq_demo.constant.QueueConst;
 import com.pino.rabbitmq_demo.constant.RoutingKey;
+import com.pino.rabbitmq_demo.queue_receiver.RpcQueueReceiver;
 import com.pino.rabbitmq_demo.queue_receiver.WorkQueueReceiver;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
@@ -110,6 +111,7 @@ public class RabbitmqConfig {
         return BindingBuilder.bind(routingQueue2).to(routing).with(RoutingKey.green);
     }
 
+
     //********************
     // Routing
     //********************
@@ -143,4 +145,29 @@ public class RabbitmqConfig {
         return BindingBuilder.bind(topicQueue2).to(topic).with("lazy.#");
     }
 
+
+    //********************
+    // Remote procedure call (RPC)
+    //********************
+    @Bean
+    public DirectExchange rpc() {
+        return new DirectExchange(ExchangeConst.RPC_EXCHANGE);
+    }
+
+    @Bean
+    public Queue rpcQueue() {
+        return new Queue(QueueConst.RPC_QUEUE, true, false, true);
+    }
+
+    @Bean
+    public Binding binding(DirectExchange rpc, Queue rpcQueue) {
+        return BindingBuilder.bind(rpcQueue)
+                .to(rpc)
+                .with("rpc");
+    }
+
+    @Bean
+    public RpcQueueReceiver rpcQueueReceiver() {
+        return new RpcQueueReceiver();
+    }
 }
