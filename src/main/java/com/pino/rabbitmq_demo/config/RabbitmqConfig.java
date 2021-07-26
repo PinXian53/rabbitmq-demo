@@ -113,7 +113,7 @@ public class RabbitmqConfig {
 
 
     //********************
-    // Routing
+    // Topic
     //********************
     @Bean
     public TopicExchange topic() {
