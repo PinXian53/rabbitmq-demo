@@ -11,4 +11,5 @@ public final class QueueConst {
     public final static String TOPIC_QUEUE2 = "topic.queue2";
     public final static String RPC_QUEUE = "rpc.queue";
     public final static String RETURN_CALLBACK_QUEUE = "return.callback.queue";
+    public final static String MANUAL_ACK_QUEUE = "manual.ack.queue";
 }
