@@ -1,6 +1,6 @@
 package com.pino.rabbitmq_demo.queue_receiver;
 
-import com.pino.rabbitmq_demo.Util.ThreadUtils;
+import com.pino.rabbitmq_demo.util.ThreadUtils;
 import com.pino.rabbitmq_demo.constant.QueueConst;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
