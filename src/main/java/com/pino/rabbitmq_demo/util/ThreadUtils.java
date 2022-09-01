@@ -1,4 +1,4 @@
-package com.pino.rabbitmq_demo.utils;
+package com.pino.rabbitmq_demo.util;
 
 public final class ThreadUtils {
 
